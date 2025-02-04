@@ -1,4 +1,9 @@
-const AbsentStudent = ({ students, toggleHandler }) => {
+import { useContext } from "react";
+import { StudentContext } from "../context/Student";
+
+const AbsentStudent = () => {
+  const { students, toggleHandler } = useContext(StudentContext);
+
   //absent list
   const absentList = students.filter((student) => student.isPresent === false);
 

@@ -1,4 +1,9 @@
-const PresentStudents = ({ students, toggleHandler }) => {
+import { useContext } from "react";
+import { StudentContext } from "../context/Student";
+
+const PresentStudents = () => {
+  const ctxValue = useContext(StudentContext);
+  const { students, toggleHandler } = ctxValue;
   //present list
   const presentList = students.filter((student) => student.isPresent === true);
 

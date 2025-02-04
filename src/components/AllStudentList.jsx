@@ -1,58 +1,17 @@
-const AllStudentList = ({
-  students,
-  setStudents,
-  setEditMode,
-  setEditAbleStudent,
-  setStudentTitle,
-}) => {
-  //remove student
-  const removeHandler = (studentId) => {
-    const filterStudent = students.filter(
-      (student) => student.id !== studentId
-    );
-    setStudents(filterStudent);
-  };
-  const editHandler = (student) => {
-    setEditMode(true);
-    setEditAbleStudent(student);
-    setStudentTitle(student.name);
-  };
-  //make present
-  const makePresentHandler = (student) => {
-    if (student.isPresent === true || student.isPresent === false) {
-      return alert(
-        "The student is already in the list.Please use the accidently used button"
-      );
-    }
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return {
-          ...item,
-          isPresent: true,
-        };
-      }
-      return item;
-    });
-    setStudents(updatedStudentList);
-  };
-  //make absent
-  const makeAbsentHandler = (student) => {
-    if (student.isPresent === true || student.isPresent === false) {
-      return alert(
-        "The student is already in the list.Please use the accidently used button"
-      );
-    }
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return {
-          ...item,
-          isPresent: false,
-        };
-      }
-      return item;
-    });
-    setStudents(updatedStudentList);
-  };
+import { useContext } from "react";
+import { StudentContext } from "../context/Student";
+
+const AllStudentList = () => {
+  const ctxValue = useContext(StudentContext);
+  const {
+    students,
+
+    removeHandler,
+    editHandler,
+    makePresentHandler,
+    makeAbsentHandler,
+  } = ctxValue;
+
   return (
     <div className="list all-student">
       <h2>All Student</h2>
